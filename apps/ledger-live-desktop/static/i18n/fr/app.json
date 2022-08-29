@@ -160,7 +160,13 @@
       "WITHDRAW_UNBONDED" : "Retiré",
       "NOMINATE" : "Nomination",
       "CHILL" : "Retirer les nominations",
-      "SET_CONTROLLER" : "Définir contrôleur"
+      "SET_CONTROLLER" : "Définir contrôleur",
+      "LOCK" : "Immobilisé",
+      "UNLOCK" : "Dégelé",
+      "WITHDRAW" : "Retiré",
+      "REVOKE" : "Révoqué",
+      "ACTIVATE" : "Activé",
+      "REGISTER" : "Enregistré"
     }
   },
   "byteSize" : {
@@ -734,7 +740,7 @@
     "bandwidthTooltip" : "Geler des actifs pour gagner de la Bande passante",
     "energyTooltip" : "Geler des actifs pour gagner de l’Énergie",
     "delegatedAssetsTooltip" : "Les actifs délégués sont utilisés pour voter sur Cosmos. Cela représente votre nombre total de votes.",
-    "undelegatingTooltip" : "Les actifs dont la délégation est interrompue sont immobilisés pendant 21 jours avant d’être disponibles."
+    "undelegatingTooltip" : "Les actifs dont la délégation est interrompue sont disponibles après 21 jours."
   },
   "exchange" : {
     "chooseProvider" : "Choisissez parmi {{providerCount}} prestataire",
@@ -2112,6 +2118,271 @@
       "MERGE_OUTPUTS" : "Réduire les frais à venir (fusionner des coins)"
     }
   },
+  "celo" : {
+    "account" : {
+      "subHeader" : {
+        "cardTitle" : "Propulsé par Figment",
+        "moreInfo" : "Plus d’informations",
+        "drawerTitle" : "Propulsé par Figment",
+        "title" : "Le token CELO désormais disponible sur Ledger Live",
+        "description" : "Vous pouvez maintenant gérer et sécuriser vos tokens CELO via Ledger Live.",
+        "description2" : "Le token Celo est natif de la chaîne Celo. Vous pouvez l’utiliser pour réaliser des transactions, le staking et de nombreuses fonctionnalités à venir.",
+        "website" : "Propulsé par Figment"
+      }
+    },
+    "lockedBalance" : "Solde immobilisé",
+    "lockedTooltip" : "Vous devez immobiliser des actifs puis voter pour des groupes de validateurs pour gagner des récompenses.",
+    "nonvotingLockedBalance" : "Solde immobilisé non utilisé pour voter",
+    "nonvotingLockedTooltip" : "Solde des actifs immobilisés pouvant être utilisés pour voter",
+    "withdrawableBalance" : "Solde pouvant être retiré",
+    "withdrawableTooltip" : "Montant que vous pouvez retirer maintenant.",
+    "delegation" : {
+      "activeTooltip" : "Un vote actif génère des récompenses",
+      "pendingTooltip" : "Un vote en attente ne génère pas de récompenses et doit être activé après 24h.",
+      "awaitingActivationTooltip" : "Ce vote en attente peut maintenant être activé.",
+      "listHeader" : "Délégations",
+      "add" : "Ajouter",
+      "validatorGroup" : "Groupe de validateurs",
+      "manageMultipleVoteWarning" : "Vous devez activer ou révoquer les autres votes du même groupe de validateurs avant de gérer ce vote.",
+      "actions" : {
+        "activate" : "Activer",
+        "revoke" : "Révoquer"
+      },
+      "emptyState" : {
+        "description" : "Vous pouvez gagner des récompenses CELO en déléguant vos actifs.",
+        "info" : "Fonctionnement de la délégation",
+        "delegation" : "Gagner des récompenses"
+      },
+      "earnRewards" : {
+        "description" : "Vous pouvez gagner des récompenses en déléguant vos CELO à un validateur.",
+        "bullet" : {
+          "0" : "Vous gardez la propriété de vos actifs délégués.",
+          "1" : "Déléguez avec votre appareil Ledger.",
+          "2" : "Les actifs seront disponibles une fois la délégation arrêtée."
+        },
+        "warning" : "Choisissez votre validateur judicieusement : vous pouvez perdre une partie de vos actifs délégués si le validateur ne respecte pas les règles."
+      }
+    },
+    "manage" : {
+      "title" : "Gérer les actifs",
+      "titleWhenPendingRegistration" : "Enregistrement du compte en attente",
+      "lock" : {
+        "title" : "Immobiliser",
+        "description" : "Pour gagner des récompenses, vous devez d’abord immobiliser un montant. Vous devez ensuite voter pour des validateurs."
+      },
+      "unlock" : {
+        "title" : "Dégeler",
+        "description" : "Pour libérer un montant immobilisé, vous devez d’abord le dégeler. Vous pourrez ensuite le retirer après la période de gel de 3 jours."
+      },
+      "withdraw" : {
+        "title" : "Retirer",
+        "description" : "Pour verser un montant dégelé sur votre solde disponible, vous devez le retirer manuellement."
+      },
+      "vote" : {
+        "title" : "Voter",
+        "description" : "Votez pour des groupes de validateurs. N’oubliez pas d’activer vos votes pour gagner des récompenses."
+      },
+      "activate" : {
+        "title" : "Activer le vote",
+        "description" : "Activez votre vote pour le groupe de validateurs."
+      },
+      "revoke" : {
+        "title" : "Révoquer le vote",
+        "description" : "Révoquez votre vote pour le groupe de validateurs."
+      }
+    },
+    "lock" : {
+      "title" : "Immobiliser des actifs",
+      "steps" : {
+        "amount" : {
+          "title" : "Montant",
+          "amountLabel" : "Montant à immobiliser",
+          "availableLabel" : "Disponible",
+          "maxLabel" : "Max",
+          "info" : "Les actifs immobilisés peuvent être dégelés à tout moment. Ils peuvent ensuite être retirés après 3 jours."
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "success" : {
+            "title" : "Actifs bien immobilisés",
+            "text" : "Vous pouvez voter pour des validateurs une fois que le réseau a confirmé votre transaction.",
+            "textVote" : "Vous pourrez voter pour des validateurs une fois que le réseau aura confirmé votre transaction.",
+            "cta" : "Voir les détails"
+          },
+          "pending" : {
+            "title" : "Immobilisation de vos actifs..."
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        }
+      }
+    },
+    "unlock" : {
+      "title" : "Dégeler des actifs",
+      "steps" : {
+        "amount" : {
+          "title" : "Montant",
+          "amountLabel" : "Montant à dégeler",
+          "availableLabel" : "Immobilisé",
+          "maxLabel" : "Max",
+          "info" : "Les actifs dégelés peuvent être retirés après une période de 3 jours.",
+          "learnMore" : "En savoir plus"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "label" : "Confirmation",
+          "success" : {
+            "title" : "Transaction de dégel bien envoyée",
+            "text" : "Les actifs dégelés pourront être retirés après 3 jours.",
+            "cta" : "Voir les détails"
+          },
+          "pending" : {
+            "title" : "Dégel de vos actifs en cours..."
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        }
+      }
+    },
+    "simpleOperation" : {
+      "modes" : {
+        "register" : {
+          "title" : "Enregistrer un compte",
+          "description" : "",
+          "info" : "Avant d’immobiliser des CELO, vous devez enregistrer votre compte sur la blockchain."
+        }
+      },
+      "steps" : {
+        "info" : {
+          "title" : "Informations"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "label" : "Confirmation",
+          "modes" : {
+            "register" : {
+              "success" : {
+                "title" : "Compte bien enregistré",
+                "text" : "L’opération apparaîtra dans votre historique sous peu.",
+                "cta" : "Immobiliser"
+              }
+            }
+          },
+          "pending" : {
+            "title" : "Diffusion de la transaction..."
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        }
+      }
+    },
+    "withdraw" : {
+      "title" : "Retirer des actifs",
+      "steps" : {
+        "amount" : {
+          "title" : "Retirer"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "success" : {
+            "title" : "",
+            "text" : "Vous avez bien retiré vos actifs. Le montant retiré sera crédité sur votre solde disponible.",
+            "cta" : "Voir les détails"
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        }
+      }
+    },
+    "vote" : {
+      "title" : "Voter",
+      "steps" : {
+        "amount" : {
+          "title" : "Montant"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "success" : {
+            "title" : "Votre vote a bien été effectué.",
+            "text" : "L’opération apparaîtra dans votre historique sous peu.",
+            "cta" : "Voir les détails"
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        },
+        "validatorGroup" : {
+          "title" : "Groupe de validateurs",
+          "ledgerByFigmentTC" : "Conditions d’utilisation de Ledger by Figment",
+          "totalVotes" : "Total des votes",
+          "commission" : "Commission"
+        }
+      }
+    },
+    "activate" : {
+      "title" : "Activer les votes",
+      "steps" : {
+        "vote" : {
+          "title" : "Voter"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "success" : {
+            "title" : "",
+            "text" : "Votre vote a bien été activé.",
+            "cta" : "Voir les détails"
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        }
+      }
+    },
+    "revoke" : {
+      "title" : "Révoquer le vote",
+      "steps" : {
+        "amount" : {
+          "title" : "Montant",
+          "amountLabel" : "Montant à révoquer",
+          "availableLabel" : "Disponible",
+          "maxLabel" : "Max"
+        },
+        "connectDevice" : {
+          "title" : "Appareil"
+        },
+        "confirmation" : {
+          "title" : "Confirmation",
+          "success" : {
+            "title" : "Vos votes ont bien été révoqués.",
+            "text" : "L’opération apparaîtra dans votre historique sous peu.",
+            "cta" : "Voir les détails"
+          },
+          "broadcastError" : "Échec probable de votre transaction. Patientez un instant puis vérifiez l’historique des transactions avant de réessayer."
+        },
+        "vote" : {
+          "title" : "Voter",
+          "active" : "Actif",
+          "pending" : "En attente",
+          "awaitingActivation" : "En attente d’activation",
+          "info" : "Seuls les votes révocables sont affichés dans cette fenêtre."
+        }
+      }
+    },
+    "alerts" : {
+      "withdrawableAssets" : "Vous pouvez effectuer un retrait.",
+      "activatableVotes" : "Vos votes peuvent maintenant être activés."
+    }
+  },
   "cosmos" : {
     "delegation" : {
       "emptyState" : {
@@ -2143,7 +2414,7 @@
             "description" : "Vous pouvez gagner des récompenses en déléguant vos ATOM à un validateur.",
             "bullet" : ["Vous gardez la propriété de vos actifs délégués.", "Déléguez avec votre appareil Ledger.", "Les actifs seront disponibles 21 jours après avoir mis fin à la délégation."],
             "warning" : {
-              "description" : "Choisissez votre validateur judicieusement : une partie de vos actifs délégués peut être perdue si le validateur ne se comporte pas correctement."
+              "description" : "Choisissez votre validateur judicieusement : vous pouvez perdre une partie de vos actifs délégués si le validateur ne respecte pas les règles."
             }
           },
           "amount" : {
@@ -2209,7 +2480,7 @@
         "steps" : {
           "starter" : {
             "title" : "Redélégation",
-            "description" : "Utilisez la redélégation pour passer facilement d’un validateur à un autre. Notez que si vous changez à nouveau d’avis, vous devrez patienter. Lorsque vous redéléguez, vos actifs sont immobilisés pendant 21 jours.",
+            "description" : "Redéléguez pour passer facilement d’un validateur à un autre. Notez que si vous changez à nouveau d’avis, vous devrez patienter. Lorsque vous redéléguez, vos actifs sont immobilisés pendant 21 jours.",
             "warning" : "Choisissez votre validateur judicieusement. Une partie de vos actifs délégués peut être perdue si le validateur ne se comporte pas correctement. Vous pouvez avoir un maximum de <0>7 redélégations en attente</0>.",
             "howDelegationWorks" : "Fonctionnement de la délégation"
           },
@@ -2238,14 +2509,14 @@
     },
     "undelegation" : {
       "header" : "Délégation(s) interrompue(s)",
-      "headerTooltip" : "Disponible après le verrouillage de 21 jours",
+      "headerTooltip" : "Disponibles après le gel de 21 jours",
       "inactiveTooltip" : "Les montants dont la délégation est interrompue ne génèrent plus de récompenses.",
       "flow" : {
         "title" : "Interrompre la délégation des actifs",
         "steps" : {
           "amount" : {
             "title" : "Montant",
-            "subtitle" : "Les actifs dont la délégation est interrompue sont immobilisés pendant <0>21 jours</0> avant d’être disponibles.",
+            "subtitle" : "L’interruption de délégation est finalisée après <0>21 jours</0>.",
             "warning" : "Les récompenses seront immédiatement encaissées. Le montant de délégation interrompue sera versé sur votre solde disponible après la période de <0>verrouillage de 21 jours</0>.",
             "fields" : {
               "validator" : "Validateur",
@@ -2653,7 +2924,7 @@
           "1" : "Déléguez avec votre appareil Ledger.",
           "2" : "Les actifs seront disponibles une fois la délégation arrêtée."
         },
-        "warning" : "Choisissez votre validateur judicieusement : une partie de vos actifs délégués peut être perdue si le validateur ne se comporte pas correctement."
+        "warning" : "Choisissez votre validateur judicieusement : vous pouvez perdre une partie de vos actifs délégués si le validateur ne respecte pas les règles."
       },
       "flow" : {
         "title" : "Déléguer",
@@ -3492,7 +3763,7 @@
         },
         "validateTransactions" : {
           "title" : "Validez vos transactions",
-          "description" : "Achetez, vendez, gérez, échangez et gagnez des cryptos en toute sécurité sur Ledger Live. Vous devez valider chaque transaction en cryptos avec votre Nano."
+          "description" : "Achetez, vendez, gérez, échangez et gagnez des cryptos en toute sécurité sur Ledger Live. Vous devez valider chaque transaction de cryptos avec votre Nano."
         },
         "setUpNanoWallet" : {
           "title" : "Configurez votre Nano",
@@ -3842,6 +4113,9 @@
     "NoAccessToCamera" : {
       "title" : "Veuillez vous assurer que votre système a un appareil photo qui n’est pas utilisé par une autre application, et que Ledger Live a les autorisations nécessaires pour l’utiliser.",
       "description" : ""
+    },
+    "CeloAllFundsWarning" : {
+      "title" : "Assurez-vous que votre solde disponible est suffisant pour couvrir les frais de transaction."
     },
     "ClaimRewardsFeesWarning" : {
       "title" : "Les récompenses sont inférieures aux frais estimés pour les demander.",
