@@ -2169,6 +2169,15 @@
       "customManifest" : {
         "title" : "Cargar manifiesto de plataforma personalizada"
       }
+    },
+    "debug" : {
+      "featureFlagsTitle" : "Marcas de funciones definidas que se usan en Ledger Live",
+      "featureFlagsDesc" : "Los valores anulados se restablecerán si se vuelve a iniciar la aplicación. Solo se aceptarán las cadenas JSON válidas.",
+      "featureFlagsOverride" : "Anular",
+      "featureFlagsEdit" : "Editar",
+      "featureFlagsRestore" : "Restaurar",
+      "featureFlagsDisplayValue" : "Mostrar valor",
+      "featureFlagsHideValue" : "Ocultar valor"
     }
   },
   "notifications" : {
