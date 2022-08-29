@@ -160,7 +160,13 @@
       "WITHDRAW_UNBONDED" : "Çekim",
       "NOMINATE" : "Aday gösterme",
       "CHILL" : "Aday gösterimlerini temizle",
-      "SET_CONTROLLER" : "Denetleyici belirle"
+      "SET_CONTROLLER" : "Denetleyici belirle",
+      "LOCK" : "Kilitlendi",
+      "UNLOCK" : "Kilit açıldı",
+      "WITHDRAW" : "Çekildi",
+      "REVOKE" : "İptal Edildi",
+      "ACTIVATE" : "Etkinleştirildi",
+      "REGISTER" : "Kaydedildi"
     }
   },
   "byteSize" : {
@@ -2112,6 +2118,271 @@
       "MERGE_OUTPUTS" : "Gelecekteki ücretleri en aza indirin (coin'leri birleştirin)"
     }
   },
+  "celo" : {
+    "account" : {
+      "subHeader" : {
+        "cardTitle" : "Figment desteğiyle",
+        "moreInfo" : "Daha fazla bilgi",
+        "drawerTitle" : "Figment desteğiyle",
+        "title" : "CELO token artık Ledger Live'da",
+        "description" : "Artık CELO token'larınızı yönetmeye başlayabilir ve Ledger Live ile güvenceye alabilirsiniz.",
+        "description2" : "Celo token, Celo zincirinin native token'ıdır ve ağ üzerinde işlem yapmak, stake etmek ve yakında çıkacak pek çok özellikten yararlanmak için kullanılır.",
+        "website" : "Figment desteğiyle"
+      }
+    },
+    "lockedBalance" : "Kilitli bakiye",
+    "lockedTooltip" : "Ödül kazanmak için öncelikle varlıkların kilitlenmesi ve doğrulayıcı gruplarına oylanması gerekir.",
+    "nonvotingLockedBalance" : "Oylanmayan kilitli bakiye",
+    "nonvotingLockedTooltip" : "Oylama için kullanılabilecek kilitli varlıkların bakiyesi",
+    "withdrawableBalance" : "Çekilebilir bakiye",
+    "withdrawableTooltip" : "An itibarıyla çekebileceğiniz miktar.",
+    "delegation" : {
+      "activeTooltip" : "Aktif oylar ödül üretir",
+      "pendingTooltip" : "Bekleyen oylar ödül üretmez ve 24 saat sonra etkinleştirilmesi gerekir",
+      "awaitingActivationTooltip" : "Bu bekleyen oy artık etkinleştirilebilir",
+      "listHeader" : "Yetki Devirleri",
+      "add" : "Ekle",
+      "validatorGroup" : "Doğrulayıcı Grubu",
+      "manageMultipleVoteWarning" : "Bu oyu yönetmeden önce, aynı doğrulayıcı grubundaki diğer oyları Etkinleştirmeli ya da İptal Etmelisiniz.",
+      "actions" : {
+        "activate" : "Etkinleştir",
+        "revoke" : "İptal et"
+      },
+      "emptyState" : {
+        "description" : "Varlıklarınızın yetkisini devrederek CELO ödülleri kazanabilirsiniz.",
+        "info" : "Yetki Devri nasıl çalışır?",
+        "delegation" : "Ödüller kazanın"
+      },
+      "earnRewards" : {
+        "description" : "CELO varlıklarınızın yetkisini bir doğrulayıcıya devrederek ödüller kazanabilirsiniz.",
+        "bullet" : {
+          "0" : "Yetki devrinde kullanılan varlıklar size ait olmaya devam eder.",
+          "1" : "Ledger cihazınızı kullanarak yetki devredin.",
+          "2" : "Varlıklar yetki iptalinden sonra mevcut olacak"
+        },
+        "warning" : "Doğrulayıcınızı dikkatle seçin: Doğrulayıcının yanlış kararlar vermesi halinde yetki devrinde kullandığınız varlıkların bir kısmını geri dönülemez bir şekilde kaybedebilirsiniz."
+      }
+    },
+    "manage" : {
+      "title" : "Varlıkları yönet",
+      "titleWhenPendingRegistration" : "Hesap Kaydı Beklemede",
+      "lock" : {
+        "title" : "Kilitle",
+        "description" : "Ödül kazanmak için öncelikle belli bir miktarı kilitleyin. Ardından doğrulayıcılarınıza oy verin."
+      },
+      "unlock" : {
+        "title" : "Kilit açın",
+        "description" : "Kilitli bir tutarı yeniden kullanabilmek için öncelikle kilidini açmalısınız. 3 günlük kilit açma süresinin ardından çekebilirsiniz."
+      },
+      "withdraw" : {
+        "title" : "Çekim",
+        "description" : "Kilidi açılan bir miktarı mevcut bakiyeye geri almak için manuel olarak çekim yapmanız gerekir."
+      },
+      "vote" : {
+        "title" : "Oyla",
+        "description" : "Doğrulayıcı gruplarına oy verin. Ödül kazanmak için oylarınızı etkinleştirdiğinizden emin olun."
+      },
+      "activate" : {
+        "title" : "Oy etkinleştirin",
+        "description" : "Doğrulayıcı grubuna verdiğiniz oyu etkinleştirin"
+      },
+      "revoke" : {
+        "title" : "Oy iptal edin",
+        "description" : "Doğrulayıcı grubuna verdiğiniz oyu iptal edin"
+      }
+    },
+    "lock" : {
+      "title" : "Varlıkları kilitleyin",
+      "steps" : {
+        "amount" : {
+          "title" : "Tutar",
+          "amountLabel" : "Kilitlenecek tutar",
+          "availableLabel" : "Mevcut",
+          "maxLabel" : "Maks.",
+          "info" : "Kilitli varlıkların kilidini istediğiniz zaman açabilirsiniz ancak kilit açma işlemi 3 günde tamamlanır."
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "success" : {
+            "title" : "Varlıkların kilidi başarıyla açıldı",
+            "text" : "İşleminiz ağ tarafından onaylandıktan sonra doğrulayıcılara oy verebilirsiniz.",
+            "textVote" : "İşleminiz ağ tarafından onaylandıktan sonra doğrulayıcılara oy verebileceksiniz.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "pending" : {
+            "title" : "Varlıklarınız kilitleniyor..."
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        }
+      }
+    },
+    "unlock" : {
+      "title" : "Varlıkların kilidini açın",
+      "steps" : {
+        "amount" : {
+          "title" : "Tutar",
+          "amountLabel" : "Kilidi açılacak tutar",
+          "availableLabel" : "Kilitli",
+          "maxLabel" : "Maks.",
+          "info" : "Kilidi açılan varlıklar, 3 günlük kilit açma süresinin ardından çekilebilir.",
+          "learnMore" : "Daha Fazla Bilgi"
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "label" : "Onaylayın",
+          "success" : {
+            "title" : "Kilit açma işlemi başarıyla gönderildi",
+            "text" : "Kilidi açılan varlıklar 3 gün sonra çekilebilir.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "pending" : {
+            "title" : "Varlıklarınızın kilidi açılıyor..."
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        }
+      }
+    },
+    "simpleOperation" : {
+      "modes" : {
+        "register" : {
+          "title" : "Hesap kaydet",
+          "description" : "",
+          "info" : "Celo varlıklarınızın kilidini açmadan önce hesabınızı on-chain (zincir içi) olarak kaydetmeniz gerekir."
+        }
+      },
+      "steps" : {
+        "info" : {
+          "title" : "Bilgi"
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "label" : "Onaylayın",
+          "modes" : {
+            "register" : {
+              "success" : {
+                "title" : "Hesap başarıyla kaydedildi.",
+                "text" : "İşlem kısa süre içinde işlem geçmişinde görünecek.",
+                "cta" : "Kilitle"
+              }
+            }
+          },
+          "pending" : {
+            "title" : "İşlem yayınlanıyor..."
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        }
+      }
+    },
+    "withdraw" : {
+      "title" : "Varlık çekimi",
+      "steps" : {
+        "amount" : {
+          "title" : "Çekim"
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "success" : {
+            "title" : "",
+            "text" : "Varlıklarınız başarıyla çekildi. Çekilen tutar mevcut bakiyenize aktarılacaktır.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        }
+      }
+    },
+    "vote" : {
+      "title" : "Oyla",
+      "steps" : {
+        "amount" : {
+          "title" : "Tutar"
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "success" : {
+            "title" : "Başarıyla oy verdiniz",
+            "text" : "İşlem kısa süre içinde işlem geçmişinde görünecek.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        },
+        "validatorGroup" : {
+          "title" : "Doğrulayıcı Grubu",
+          "ledgerByFigmentTC" : "Ledger by Figment Hüküm ve Koşulları",
+          "totalVotes" : "Toplam Oy",
+          "commission" : "Komisyon"
+        }
+      }
+    },
+    "activate" : {
+      "title" : "Oyları etkinleştirin",
+      "steps" : {
+        "vote" : {
+          "title" : "Oyla"
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "success" : {
+            "title" : "",
+            "text" : "Oyunuz başarıyla etkinleştirildi.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        }
+      }
+    },
+    "revoke" : {
+      "title" : "Oyları iptal edin",
+      "steps" : {
+        "amount" : {
+          "title" : "Tutar",
+          "amountLabel" : "İptal edilecek tutar",
+          "availableLabel" : "Mevcut",
+          "maxLabel" : "Maks."
+        },
+        "connectDevice" : {
+          "title" : "Cihaz"
+        },
+        "confirmation" : {
+          "title" : "Onaylayın",
+          "success" : {
+            "title" : "Oylarınızı başarıyla iptal ettiniz",
+            "text" : "İşlem kısa süre içinde işlem geçmişinde görünecek.",
+            "cta" : "Ayrıntıları göster"
+          },
+          "broadcastError" : "İşleminiz başarısız olmuş olabilir. Lütfen biraz bekleyin ve tekrar denemeden önce işlem geçmişini kontrol edin."
+        },
+        "vote" : {
+          "title" : "Oyla",
+          "active" : "Aktif",
+          "pending" : "Beklemede",
+          "awaitingActivation" : "Etkinleştirme bekleniyor",
+          "info" : "Bu modda sadece iptal edebileceğiniz oylar gösterilir"
+        }
+      }
+    },
+    "alerts" : {
+      "withdrawableAssets" : "Çekebileceğiniz bakiye tutarı",
+      "activatableVotes" : "Etkinleştirebileceğiniz oylar bulunuyor."
+    }
+  },
   "cosmos" : {
     "delegation" : {
       "emptyState" : {
@@ -2178,8 +2449,8 @@
             "compoundOrClaim" : "Birleştir veya hesaba al",
             "compoundDescription" : "Ödülleriniz, yetki devrinde kullanılan tutara eklenecek",
             "claimDescription" : "Ödüller mevcut bakiyeye eklenecek",
-            "compoundInfo" : "<0>{{amount}}</0> kazandınız. Devam butonuna tıklayarak ödünüzü hemen alın ve otomatik olarak aynı doğrulayıcıya devredin.",
-            "claimInfo" : "Aşağıdaki doğrulayıcıdan <0>{{amount}}</0> kazandınız. Devam butonuna tıklayarak ödünüzü hemen alın ve otomatik olarak mevcut bakiyenize ekleyin.",
+            "compoundInfo" : "<0>{{amount}}</0> kazandınız. Devam butonuna tıklayarak ödülünüzü hemen alın ve otomatik olarak aynı doğrulayıcıya devredin.",
+            "claimInfo" : "Aşağıdaki doğrulayıcıdan <0>{{amount}}</0> kazandınız. Devam butonuna tıklayarak ödülünüzü hemen alın ve otomatik olarak mevcut bakiyenize ekleyin.",
             "selectLabel" : "Bir yetkili seçin"
           },
           "connectDevice" : {
@@ -3842,6 +4113,9 @@
     "NoAccessToCamera" : {
       "title" : "Lütfen sisteminizin kamerası olduğundan, başka bir uygulama tarafından kullanılmadığından ve Ledger Live'ın bu kamerayı kullanma izni olduğundan emin olun.",
       "description" : ""
+    },
+    "CeloAllFundsWarning" : {
+      "title" : "Gelecekteki işlem ücretleri için yeterli bakiyenin kaldığından emin olun"
     },
     "ClaimRewardsFeesWarning" : {
       "title" : "Ödül miktarı, ödülü almak için gereken tahmini ağ ücretlerinden daha az",
