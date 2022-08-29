@@ -160,7 +160,13 @@
       "WITHDRAW_UNBONDED" : "출금",
       "NOMINATE" : "지명",
       "CHILL" : "지명 해제",
-      "SET_CONTROLLER" : "관리자 설정"
+      "SET_CONTROLLER" : "관리자 설정",
+      "LOCK" : "잠금",
+      "UNLOCK" : "잠금 해제",
+      "WITHDRAW" : "출금됨",
+      "REVOKE" : "취소",
+      "ACTIVATE" : "활성화",
+      "REGISTER" : "등록 완료"
     }
   },
   "byteSize" : {
@@ -2112,6 +2118,271 @@
       "MERGE_OUTPUTS" : "미래 수수료 최소화 (코인 머지)"
     }
   },
+  "celo" : {
+    "account" : {
+      "subHeader" : {
+        "cardTitle" : "Powered by Figment",
+        "moreInfo" : "자세한 정보",
+        "drawerTitle" : "Powered by Figment",
+        "title" : "이제 Ledger Live에서 셀로 토큰을 사용할 수 있습니다.",
+        "description" : "이제 Ledger Live로 셀로 토큰을 관리하고 안전하게 보호할 수 있습니다.",
+        "description2" : "셀로 토큰은 셀로 체인의 네이티브 토큰이며 트랜잭션과 스테이킹을 비롯하여 앞으로 공개될 다양한 기능에 사용됩니다.",
+        "website" : "Powered by Figment"
+      }
+    },
+    "lockedBalance" : "잠겨있는 잔액",
+    "lockedTooltip" : "자산을 잠그고 검증인에 투표해야 보상을 받을 수 있습니다.",
+    "nonvotingLockedBalance" : "잠겨있는 무의결 잔액",
+    "nonvotingLockedTooltip" : "투표에 사용할 수 있으며 잠겨 있는 자산 잔액",
+    "withdrawableBalance" : "인출 가능 잔액",
+    "withdrawableTooltip" : "현재 인출 가능 금액",
+    "delegation" : {
+      "activeTooltip" : "적극적인 투표가 보상을 창출합니다.",
+      "pendingTooltip" : "보류 중인 투표는 보상을 생성하지 않으며 24시간 후에 활성화해야 합니다.",
+      "awaitingActivationTooltip" : "이 보류 중인 투표를 이제 활성화할 수 있습니다.",
+      "listHeader" : "위임",
+      "add" : "추가",
+      "validatorGroup" : "검증인 그룹",
+      "manageMultipleVoteWarning" : "동일한 검증자 그룹에서 다른 투표를 활성화하거나 취소하고 나서 이 투표를 처리해야 합니다.",
+      "actions" : {
+        "activate" : "활성화",
+        "revoke" : "취소"
+      },
+      "emptyState" : {
+        "description" : "자산을 위임하여 셀로 보상을 받을 수 있습니다.",
+        "info" : "위임은 어떤 원리인가요?",
+        "delegation" : "보상 받기"
+      },
+      "earnRewards" : {
+        "description" : "셀로 암호화폐를 검증인에게 위임하여 보상을 받을 수 있습니다.",
+        "bullet" : {
+          "0" : "위임된 자산의 소유권은 귀하가 갖습니다",
+          "1" : "Ledger 장치를 이용하여 위임하세요",
+          "2" : "자산은 위임 취소 후 사용 가능합니다"
+        },
+        "warning" : "검증인을 현명하게 선택하세요. 검증인이 부적절한 행동을 하는 경우 위임된 자산의 일부가 영구 손실될 수 있습니다."
+      }
+    },
+    "manage" : {
+      "title" : "자산 관리",
+      "titleWhenPendingRegistration" : "계정 등록 보류 중",
+      "lock" : {
+        "title" : "잠금",
+        "description" : "보상을 받으려면 우선 금액을 잠그세요. 그런 다음 검증인에게 투표해야 합니다."
+      },
+      "unlock" : {
+        "title" : "잠금 해제",
+        "description" : "잠긴 금액을 다시 이용하려면 우선 잠금을 해제해야 합니다. 3일의 잠금 해제 기간이 지나면 출금이 가능합니다."
+      },
+      "withdraw" : {
+        "title" : "출금",
+        "description" : "잠금이 해제된 금액을 다시 가용 잔금으로 가져오려면 직접 출금해야 합니다."
+      },
+      "vote" : {
+        "title" : "투표",
+        "description" : "검증자 그룹에 투표하세요. 투표를 활성화하여 보상을 받으세요."
+      },
+      "activate" : {
+        "title" : "투표 활성화",
+        "description" : "검증인 그룹에 대한 투표 활성화"
+      },
+      "revoke" : {
+        "title" : "투표 취소",
+        "description" : "검증인 그룹에 대한 투표 취소"
+      }
+    },
+    "lock" : {
+      "title" : "자산 잠금",
+      "steps" : {
+        "amount" : {
+          "title" : "금액",
+          "amountLabel" : "잠금할 금액",
+          "availableLabel" : "이용 가능",
+          "maxLabel" : "최대치",
+          "info" : "잠금한 자산은 언제든지 잠금을 해제할 수 있지만 잠금 해제에는 3일이 걸립니다."
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "success" : {
+            "title" : "자산이 성공적으로 잠겼습니다",
+            "text" : "사용자는 네트워크가 트랜잭션을 확인한 후에 검증인에 투표할 수 있습니다.",
+            "textVote" : "사용자는 네트워크가 트랜잭션을 확인한 후에 검증인에 투표할 수 있습니다.",
+            "cta" : "세부사항 보기"
+          },
+          "pending" : {
+            "title" : "자산을 잠그는 중..."
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        }
+      }
+    },
+    "unlock" : {
+      "title" : "자산 잠금 해제",
+      "steps" : {
+        "amount" : {
+          "title" : "금액",
+          "amountLabel" : "잠금 해제할 금액",
+          "availableLabel" : "잠금",
+          "maxLabel" : "최대치",
+          "info" : "잠금 해제된 자산은 잠금 해제 기간 3일 후에 출금이 가능합니다.",
+          "learnMore" : "자세히 알아보기"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "label" : "확인",
+          "success" : {
+            "title" : "잠금해제된 트랜잭션이 성공적으로 전송되었습니다",
+            "text" : "잠금 해제된 자산은 3일 후 출금이 가능합니다.",
+            "cta" : "세부사항 보기"
+          },
+          "pending" : {
+            "title" : "자산 잠금 해제 중..."
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        }
+      }
+    },
+    "simpleOperation" : {
+      "modes" : {
+        "register" : {
+          "title" : "계정 등록",
+          "description" : "",
+          "info" : "셀로를 잠그기 전에 계정을 온체인에 등록해야 합니다."
+        }
+      },
+      "steps" : {
+        "info" : {
+          "title" : "정보"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "label" : "확인",
+          "modes" : {
+            "register" : {
+              "success" : {
+                "title" : "계정이 성공적으로 등록되었습니다",
+                "text" : "곧 내역에서 거래를 확인할 수 있습니다.",
+                "cta" : "잠금"
+              }
+            }
+          },
+          "pending" : {
+            "title" : "트랜잭션 브로드캐스팅 중..."
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        }
+      }
+    },
+    "withdraw" : {
+      "title" : "자산 출금",
+      "steps" : {
+        "amount" : {
+          "title" : "출금"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "success" : {
+            "title" : "",
+            "text" : "자산이 성공적으로 출금되었습니다. 인출된 금액은 가용 잔액에 추가됩니다.",
+            "cta" : "세부사항 보기"
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        }
+      }
+    },
+    "vote" : {
+      "title" : "투표",
+      "steps" : {
+        "amount" : {
+          "title" : "금액"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "success" : {
+            "title" : "투표를 완료했습니다",
+            "text" : "곧 내역에서 거래를 확인할 수 있습니다.",
+            "cta" : "세부사항 보기"
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        },
+        "validatorGroup" : {
+          "title" : "검증인 그룹",
+          "ledgerByFigmentTC" : "Ledger by Figment 이용약관",
+          "totalVotes" : "총 투표수",
+          "commission" : "커미션"
+        }
+      }
+    },
+    "activate" : {
+      "title" : "투표 활성화",
+      "steps" : {
+        "vote" : {
+          "title" : "투표"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "success" : {
+            "title" : "",
+            "text" : "투표가 성공적으로 활성화되었습니다.",
+            "cta" : "세부사항 보기"
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        }
+      }
+    },
+    "revoke" : {
+      "title" : "투표 취소",
+      "steps" : {
+        "amount" : {
+          "title" : "금액",
+          "amountLabel" : "취소할 금액",
+          "availableLabel" : "이용 가능",
+          "maxLabel" : "최대치"
+        },
+        "connectDevice" : {
+          "title" : "장치"
+        },
+        "confirmation" : {
+          "title" : "확인",
+          "success" : {
+            "title" : "투표를 성공적으로 취소하셨습니다.",
+            "text" : "곧 내역에서 거래를 확인할 수 있습니다.",
+            "cta" : "세부사항 보기"
+          },
+          "broadcastError" : "트랜잭션이 실패한 것 같습니다. 잠시 기다려 트랜잭션 내역을 확인한 후 다시 시도하세요."
+        },
+        "vote" : {
+          "title" : "투표",
+          "active" : "활성",
+          "pending" : "대기 중",
+          "awaitingActivation" : "활성화 대기 중",
+          "info" : "이 모드에서는 취소가능한 투표만 표시됩니다."
+        }
+      }
+    },
+    "alerts" : {
+      "withdrawableAssets" : "인출 가능한 잔액이 있습니다.",
+      "activatableVotes" : "현재 활성화할 수 있는 투표가 있습니다."
+    }
+  },
   "cosmos" : {
     "delegation" : {
       "emptyState" : {
@@ -3842,6 +4113,9 @@
     "NoAccessToCamera" : {
       "title" : "귀하의 시스템에 다른 애플리케이션에서 사용되지 않는 카메라가 있는지 확인하시고 Ledger Live가 해당 카메라를 사용할 수 있도록 허용해주세요.",
       "description" : ""
+    },
+    "CeloAllFundsWarning" : {
+      "title" : "향후 트랜잭션 수수료 지불에 필요한 잔금을 충분히 남겨 두세요"
     },
     "ClaimRewardsFeesWarning" : {
       "title" : "추정된 수수료보다 수령하는 보상액이 적습니다",
