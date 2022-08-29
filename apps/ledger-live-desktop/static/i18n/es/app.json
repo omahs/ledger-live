@@ -160,7 +160,13 @@
       "WITHDRAW_UNBONDED" : "Retiro",
       "NOMINATE" : "Nominación",
       "CHILL" : "Borrar nominaciones",
-      "SET_CONTROLLER" : "Definir controlador"
+      "SET_CONTROLLER" : "Definir controlador",
+      "LOCK" : "Bloqueado",
+      "UNLOCK" : "Desbloqueado",
+      "WITHDRAW" : "Retirado",
+      "REVOKE" : "Revocado",
+      "ACTIVATE" : "Activado",
+      "REGISTER" : "Registrado"
     }
   },
   "byteSize" : {
@@ -2112,6 +2118,271 @@
       "MERGE_OUTPUTS" : "Minimizar las tarifas futuras (fusionar monedas)"
     }
   },
+  "celo" : {
+    "account" : {
+      "subHeader" : {
+        "cardTitle" : "Con tecnología de Figment",
+        "moreInfo" : "Más información",
+        "drawerTitle" : "Con tecnología de Figment",
+        "title" : "El token CELO ya está disponible en Ledger Live",
+        "description" : "Ahora puedes gestionar tus tokens CELO y protegerlos con Ledger Live.",
+        "description2" : "El token Celo es nativo de la cadena Celo y se utiliza para todas las transacciones, puesta en participación y muchas características futuras.",
+        "website" : "Con tecnología de Figment"
+      }
+    },
+    "lockedBalance" : "Saldo bloqueado",
+    "lockedTooltip" : "Los activos deben estar bloqueados y votados para grupos de validadores antes de obtener recompensas.",
+    "nonvotingLockedBalance" : "Saldo bloqueado sin votación",
+    "nonvotingLockedTooltip" : "El saldo de activos bloqueados disponibles para usarlo para votación.",
+    "withdrawableBalance" : "Saldo retirable",
+    "withdrawableTooltip" : "La cantidad que puedes retirar en este momento.",
+    "delegation" : {
+      "activeTooltip" : "Un voto activo genera recompensas.",
+      "pendingTooltip" : "Un voto pendiente no genera recompensas y debe activarse después de 24 horas.",
+      "awaitingActivationTooltip" : "Este voto pendiente se puede activar ya.",
+      "listHeader" : "Delegaciones",
+      "add" : "Agregar",
+      "validatorGroup" : "Grupo de validadores",
+      "manageMultipleVoteWarning" : "Debes activar o revocar otros votos dentro del mismo grupo de validadores antes de gestionar este voto.",
+      "actions" : {
+        "activate" : "Activar",
+        "revoke" : "Revocar"
+      },
+      "emptyState" : {
+        "description" : "Puedes recibir recompensas CELO delegando tus activos.",
+        "info" : "Cómo funciona la delegación",
+        "delegation" : "Recibir recompensas"
+      },
+      "earnRewards" : {
+        "description" : "Puedes recibir recompensas delegando tus activos CELO a un validador.",
+        "bullet" : {
+          "0" : "Conservas la propiedad de los activos delegados",
+          "1" : "Delegar utilizando tu dispositivo Ledger",
+          "2" : "Los activos estarán disponibles después de la desdelegación"
+        },
+        "warning" : "Elige tu validador con cuidado: Puedes perder definitivamente parte de tus activos delegados si el validador no se comporta apropiadamente."
+      }
+    },
+    "manage" : {
+      "title" : "Administrar activos",
+      "titleWhenPendingRegistration" : "Registro de cuenta pendiente",
+      "lock" : {
+        "title" : "Bloquear",
+        "description" : "Para recibir recompensas, primero debes bloquear un importe. Luego, debes nominar a tu validador o tus validadores."
+      },
+      "unlock" : {
+        "title" : "Desbloquear",
+        "description" : "Para hacer que un importe bloqueado esté disponible de nuevo, antes debes desbloquearlo. Podrás retirarlo después de un período de desbloqueo de 3 días."
+      },
+      "withdraw" : {
+        "title" : "Retirar",
+        "description" : "Para recuperar un importe desbloqueado en el saldo disponible, debes retirarlo manualmente."
+      },
+      "vote" : {
+        "title" : "Votar",
+        "description" : "Vota por grupos de validadores. Para obtener recompensas, asegúrate de que activas tus votos."
+      },
+      "activate" : {
+        "title" : "Activar voto",
+        "description" : "Activa tu voto para el grupo de validadores"
+      },
+      "revoke" : {
+        "title" : "Revocar voto",
+        "description" : "Revoca tu voto para el grupo de validadores"
+      }
+    },
+    "lock" : {
+      "title" : "Bloquear activos",
+      "steps" : {
+        "amount" : {
+          "title" : "Importe",
+          "amountLabel" : "Cantidad para bloquear",
+          "availableLabel" : "Disponible",
+          "maxLabel" : "Máx.",
+          "info" : "Es posible desvincular los activos bloqueados en cualquier momento, pero el desbloqueo tarda 3 días."
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "success" : {
+            "title" : "Activos bloqueados correctamente",
+            "text" : "Puedes votar por validadores una vez que la red haya confirmado la transacción.",
+            "textVote" : "Podrás votar por validadores una vez que la red haya confirmado tu transacción.",
+            "cta" : "Ver detalles"
+          },
+          "pending" : {
+            "title" : "Bloqueando tus activos..."
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        }
+      }
+    },
+    "unlock" : {
+      "title" : "Desbloquear activos",
+      "steps" : {
+        "amount" : {
+          "title" : "Importe",
+          "amountLabel" : "Cantidad para desbloquear",
+          "availableLabel" : "Bloqueado",
+          "maxLabel" : "Máx.",
+          "info" : "Los activos desbloqueados se pueden retirar después de un período de desbloqueo de 3 días.",
+          "learnMore" : "Más información"
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "label" : "Confirmación",
+          "success" : {
+            "title" : "Transacción de desbloqueo enviada correctamente",
+            "text" : "Es posible retirar los activos desbloqueados después de 3 días.",
+            "cta" : "Ver detalles"
+          },
+          "pending" : {
+            "title" : "Desbloqueando tus activos..."
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        }
+      }
+    },
+    "simpleOperation" : {
+      "modes" : {
+        "register" : {
+          "title" : "Registrar cuenta",
+          "description" : "",
+          "info" : "Antes de bloquear tus Celo, debes registrar tu cuenta sobre la cadena."
+        }
+      },
+      "steps" : {
+        "info" : {
+          "title" : "Info"
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "label" : "Confirmación",
+          "modes" : {
+            "register" : {
+              "success" : {
+                "title" : "Cuenta registrada correctamente",
+                "text" : "Pronto verás tu operación en el historial.",
+                "cta" : "Bloquear"
+              }
+            }
+          },
+          "pending" : {
+            "title" : "Transmitiendo transacción..."
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        }
+      }
+    },
+    "withdraw" : {
+      "title" : "Retirar activos",
+      "steps" : {
+        "amount" : {
+          "title" : "Retirar"
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "success" : {
+            "title" : "",
+            "text" : "Tus activos se han retirado correctamente. La cantidad retirada se agregará a tu saldo disponible.",
+            "cta" : "Ver detalles"
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        }
+      }
+    },
+    "vote" : {
+      "title" : "Votar",
+      "steps" : {
+        "amount" : {
+          "title" : "Importe"
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "success" : {
+            "title" : "Has votado correctamente",
+            "text" : "Pronto verás tu operación en el historial.",
+            "cta" : "Ver detalles"
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        },
+        "validatorGroup" : {
+          "title" : "Grupo de validadores",
+          "ledgerByFigmentTC" : "Términos y condiciones de Ledger by Figment",
+          "totalVotes" : "Total de votos",
+          "commission" : "Comisión"
+        }
+      }
+    },
+    "activate" : {
+      "title" : "Activar votos",
+      "steps" : {
+        "vote" : {
+          "title" : "Votar"
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "success" : {
+            "title" : "",
+            "text" : "Tu voto se ha activado correctamente.",
+            "cta" : "Ver detalles"
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        }
+      }
+    },
+    "revoke" : {
+      "title" : "Revocar voto",
+      "steps" : {
+        "amount" : {
+          "title" : "Importe",
+          "amountLabel" : "Cantidad para revocar",
+          "availableLabel" : "Disponible",
+          "maxLabel" : "Máx."
+        },
+        "connectDevice" : {
+          "title" : "Dispositivo"
+        },
+        "confirmation" : {
+          "title" : "Confirmación",
+          "success" : {
+            "title" : "Has revocado tus votos correctamente",
+            "text" : "Pronto verás tu operación en el historial.",
+            "cta" : "Ver detalles"
+          },
+          "broadcastError" : "Es posible que la transacción haya fallado. Espera un momento y comprueba el historial de transacciones antes de intentarlo de nuevo."
+        },
+        "vote" : {
+          "title" : "Votar",
+          "active" : "Activo",
+          "pending" : "Pendiente",
+          "awaitingActivation" : "Esperando activación",
+          "info" : "En este modal solo se muestran los votos revocables"
+        }
+      }
+    },
+    "alerts" : {
+      "withdrawableAssets" : "Tienes saldo retirable",
+      "activatableVotes" : "Tienes votos que pueden activarse."
+    }
+  },
   "cosmos" : {
     "delegation" : {
       "emptyState" : {
@@ -3842,6 +4113,9 @@
     "NoAccessToCamera" : {
       "title" : "Asegúrate de que tu sistema cuente con una cámara, de que la misma no esté siendo utilizada por otra aplicación y de que Ledger Live tenga permiso para usarla.",
       "description" : ""
+    },
+    "CeloAllFundsWarning" : {
+      "title" : "Asegúrate de que tienes un saldo restante suficiente para cubrir las tarifas de transacciones futuras"
     },
     "ClaimRewardsFeesWarning" : {
       "title" : "Las recompensas son inferiores a las tarifas estimadas para reclamarlas",
