@@ -2169,6 +2169,15 @@
       "customManifest" : {
         "title" : "カスタムプラットフォームマニフェストを読み込む"
       }
+    },
+    "debug" : {
+      "featureFlagsTitle" : "Ledger Liveで使用される定義済みの機能フラグ",
+      "featureFlagsDesc" : "上書きされた値は、アプリが再起動されるとリセットされます。有効なJSON文字列のみが受け入れられます。",
+      "featureFlagsOverride" : "上書き",
+      "featureFlagsEdit" : "編集",
+      "featureFlagsRestore" : "復元",
+      "featureFlagsDisplayValue" : "値を表示",
+      "featureFlagsHideValue" : "値を非表示"
     }
   },
   "notifications" : {
@@ -2405,7 +2414,7 @@
       },
       "payoutModal" : {
         "title" : "ペイアウト手数料",
-        "description" : "ペイアウト手数料はデバイス上に表示されず、送金額から差し引かれます。",
+        "description" : "ペイアウト手数料はデバイス上に表示されず、送付額から差し引かれます。",
         "cta" : "閉じる"
       },
       "pendingOperation" : {
@@ -3402,8 +3411,8 @@
     "drawerUpdate" : {
       "title" : "ファームウェアのアップデート",
       "description" : "Ledger Nanoをデスクトップ版Ledger Liveアプリに接続して、Ledger Nanoのファームウェアをアップデートします。",
-      "pleaseConnectUsbTitle" : "USB cable needed",
-      "pleaseConnectUsbDescription" : "To start the firmware update, plug your {{deviceName}} to your mobile phone using a USB cable."
+      "pleaseConnectUsbTitle" : "USBケーブルが必要です",
+      "pleaseConnectUsbDescription" : "ファームウェアのアップデートを開始するには、 {{deviceName}}をUSBケーブルでスマートフォンに接続します。"
     }
   },
   "FirmwareUpdateReleaseNotes" : {
