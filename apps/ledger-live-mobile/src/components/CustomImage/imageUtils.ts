@@ -1,4 +1,4 @@
-import { Image } from "react-native";
+import { Image, NativeModules, Platform } from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
 import * as ImagePicker from "expo-image-picker";
 import { ImageDimensions, ImageFileUri, ImageUrl } from "./types";
@@ -9,28 +9,55 @@ import {
   ImageTooLargeError,
 } from "./errors";
 
+/**
+ * Call this to prompt the user to pick an image from its phone.
+ *
+ * @returns (a promise) null if the user cancelled, otherwise an containing
+ * the chosen image file URI as well as the image dimensions
+ */
 export async function importImageFromPhoneGallery(): Promise<
   (ImageFileUri & Partial<ImageDimensions>) | null
 > {
   try {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: false,
-      quality: 1,
-      base64: false,
-    });
-    if (result.cancelled) {
-      return null;
+    if (Platform.OS === "android") {
+      /**
+       * We have our own implementation for Android because expo-image-picker
+       * sometimes returns {cancelled: true} even when the user picks an image.
+       * More specifically, this happens if the user navigates to another app
+       * from the opened file picker app.
+       * */
+      const { uri, cancelled } =
+        await NativeModules.ImagePickerModule.pickImage();
+      if (cancelled) return null;
+      if (uri) {
+        const { width, height } = await loadImageSizeAsync(uri);
+        return {
+          imageFileUri: uri,
+          width,
+          height,
+        };
+      }
+      throw new Error("uri is falsy");
+    } else {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: false,
+        quality: 1,
+        base64: false,
+      });
+      if (result.cancelled) {
+        return null;
+      }
+      const { uri, width, height } = result;
+      if (uri) {
+        return {
+          width,
+          height,
+          imageFileUri: uri,
+        };
+      }
+      throw new Error("uri is falsy");
     }
-    const { uri, width, height } = result;
-    if (uri) {
-      return {
-        width,
-        height,
-        imageFileUri: uri,
-      };
-    }
-    throw new Error("uri is falsy");
   } catch (e) {
     console.error(e);
     throw new ImageLoadFromGalleryError();
