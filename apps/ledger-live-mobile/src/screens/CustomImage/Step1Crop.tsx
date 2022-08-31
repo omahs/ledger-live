@@ -8,7 +8,6 @@ import React, {
 import { Flex, Icons, InfiniteLoader } from "@ledgerhq/native-ui";
 import { CropView } from "react-native-image-crop-tools";
 import { useTranslation } from "react-i18next";
-import { Platform } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import ImageCropper, {
   Props as ImageCropperProps,
@@ -18,10 +17,7 @@ import {
   ImageDimensions,
   ImageFileUri,
 } from "../../components/CustomImage/types";
-import {
-  fitImageContain,
-  loadImageToFileWithDimensions,
-} from "../../components/CustomImage/imageUtils";
+import { loadImageToFileWithDimensions } from "../../components/CustomImage/imageUtils";
 import { cropAspectRatio } from "./shared";
 import Button from "../../components/Button";
 import { ScreenName } from "../../const";
@@ -120,23 +116,8 @@ const Step1Cropping: React.FC<
   );
 
   const sourceDimensions = useMemo(
-    () =>
-      containerDimensions
-        ? fitImageContain(
-            {
-              height:
-                (Platform.OS === "android" && rotated
-                  ? imageToCrop?.width
-                  : imageToCrop?.height) ?? 200,
-              width:
-                (Platform.OS === "android" && rotated
-                  ? imageToCrop?.height
-                  : imageToCrop?.width) ?? 200,
-            },
-            containerDimensions,
-          )
-        : null,
-    [imageToCrop?.height, imageToCrop?.width, rotated, containerDimensions],
+    () => containerDimensions,
+    [containerDimensions],
   );
 
   const sourceAspectRatio = sourceDimensions
