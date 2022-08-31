@@ -130,7 +130,7 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: avd-30
+          key: avd-28
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -149,7 +149,7 @@ jobs:
         run: pnpm mobile detox clean-framework-cache && pnpm mobile detox build-framework-cache           
       - name: Run Android tests
         uses: reactivecircus/android-emulator-runner@v2
-        timeout-minutes: 15
+        timeout-minutes: 30
         with:
           api-level: 28
           arch: x86_64
@@ -159,8 +159,9 @@ jobs:
           ram-size: 4096M
           script: pnpm mobile e2e:test -c android.emu.release --loglevel verbose --record-logs failing --record-timeline all --take-screenshots all --record-videos failing
       - name: Upload test artifacts
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: test-android-artifacts
-          path: artifacts
+          path: '/Users/runner/work/ledger-live/ledger-live/apps/ledger-live-mobile/android/app/build/outputs/apk/stagingRelease/app-x86_64-stagingRelease.apk'
           
