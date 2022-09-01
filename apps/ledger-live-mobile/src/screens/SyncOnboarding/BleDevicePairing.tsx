@@ -133,17 +133,21 @@ const BleDevicePairingInner = ({
         <Flex alignItems="center" justifyContent="center" p={5}>
           <CircledCrossSolidMedium color={colors.error.c80} size={56} />
         </Flex>
-        <Text mb={8} textAlign="center" variant="h4" fontWeight="semiBold">
+        <Text mb={4} textAlign="center" variant="h4" fontWeight="semiBold">
           {t("syncOnboarding.pairing.error.title")}
         </Text>
-        <Text textAlign="center">
+        <Text
+          textAlign="center"
+          variant="body"
+          fontWeight="medium"
+          mb={8}
+          color="neutral.c80"
+        >
           {t("syncOnboarding.pairing.error.subtitle", { productName })}
         </Text>
-        <Flex px={4} mb={10}>
-          <Button type="main" onPress={onNavigateBack}>
-            {t("syncOnboarding.desyncDrawer.retryCta")}
-          </Button>
-        </Flex>
+        <Button type="main" onPress={onNavigateBack}>
+          {t("syncOnboarding.desyncDrawer.retryCta")}
+        </Button>
       </Container>
     );
   }

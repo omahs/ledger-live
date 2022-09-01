@@ -13,6 +13,7 @@ import { ScannedDevice } from "@ledgerhq/live-common/ble/types";
 import { getDeviceModel } from "@ledgerhq/devices";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTheme } from "styled-components/native";
 
 import { SyncOnboardingStackParamList } from "../../components/RootNavigator/SyncOnboardingNavigator";
 import { ScreenName } from "../../const";
@@ -23,15 +24,19 @@ import RequiresBLE from "../../components/RequiresBLE";
 import LocationRequired from "../LocationRequired";
 import BleDeviceItem from "./BleDeviceItem";
 
-const BluetoothThingy = () => (
-  <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={3}>
-    <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={4}>
-      <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={3}>
-        <BluetoothMedium size={48} />
+const BluetoothThingy = () => {
+  const { colors } = useTheme();
+
+  return (
+    <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={3}>
+      <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={4}>
+        <Flex borderRadius="9999px" backgroundColor="#0082FC4D" padding={3}>
+          <BluetoothMedium size={48} color={colors.constant.white} />
+        </Flex>
       </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 type Props = StackScreenProps<
   SyncOnboardingStackParamList,
