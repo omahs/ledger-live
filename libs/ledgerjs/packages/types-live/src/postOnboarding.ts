@@ -67,12 +67,12 @@ export type PostOnboardingAction = {
   /**
    * Event that will be dispatched when starting this action.
    */
-  onStartEvent?: string;
+  startEvent?: string;
 
   /**
    * Event properties that will be dispatched when starting this action.
    */
-  onStartEventProperties?: any;
+  startEventProperties?: any;
 };
 
 /**

@@ -18,8 +18,8 @@ const PostOnboardingActionRow: React.FC<Props> = props => {
     title,
     description,
     tagLabel,
-    onStartEvent,
-    onStartEventProperties,
+    startEvent,
+    startEventProperties,
     completed,
   } = props;
   const { t } = useTranslation();
@@ -28,9 +28,9 @@ const PostOnboardingActionRow: React.FC<Props> = props => {
   const handlePress = useCallback(() => {
     if (navigationParams) {
       navigation.navigate(...navigationParams);
-      onStartEvent && track(onStartEvent, onStartEventProperties);
+      startEvent && track(startEvent, startEventProperties);
     }
-  }, [navigationParams, navigation, onStartEvent, onStartEventProperties]);
+  }, [navigationParams, navigation, startEvent, startEventProperties]);
 
   return (
     <Touchable onPress={completed ? null : handlePress}>
