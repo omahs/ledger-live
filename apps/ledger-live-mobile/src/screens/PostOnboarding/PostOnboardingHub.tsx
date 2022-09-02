@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Divider,
   Flex,
@@ -73,7 +73,10 @@ const PostOnboardingHub: React.FC<StackScreenProps<Props>> = ({
     setPopupOpened(true);
   }, [actionCompletedPopupLabel]);
 
+  const allowClosingScreen = useRef<boolean>(true);
+
   const navigateToMainScreen = useCallback(() => {
+    allowClosingScreen.current = true;
     navigation.replace(NavigatorName.Base, {
       screen: NavigatorName.Main,
     });
@@ -83,15 +86,25 @@ const PostOnboardingHub: React.FC<StackScreenProps<Props>> = ({
     setPopupOpened(false);
   }, [setPopupOpened]);
 
+  /**
+   * At 0: regular screen
+   * At 0.5: opaque black/white backdrop drawn on top
+   * At 1: "finished" text drawn on top of backdrop
+   */
   const animDoneValue = useSharedValue(0);
 
   const allDone = useAllPostOnboardingActionsCompleted();
 
+  const animationTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearAnimationTimeout = useCallback(() => {
+    animationTimeout.current && clearTimeout(animationTimeout.current);
+  }, [animationTimeout]);
+
   const triggerEndAnimation = useCallback(() => {
     let dead = false;
-    let timeout: ReturnType<typeof setTimeout>;
     const onAnimEnd = () => {
-      timeout = setTimeout(() => {
+      clearAnimationTimeout();
+      animationTimeout.current = setTimeout(() => {
         navigateToMainScreen();
       }, 3000);
     };
@@ -104,11 +117,33 @@ const PostOnboardingHub: React.FC<StackScreenProps<Props>> = ({
       }),
     );
 
+    /**
+     * Preventing screen closing:
+     * - removing header right (close button)
+     * - disabling gestures (necessary for iOS)
+     * - adding listener to "beforeRemove" (necessary for Android as the back button would still close otherwise)
+     */
+    navigation.setOptions({ gestureEnabled: false, headerRight: () => null });
+    navigation.getParent()?.setOptions({ gestureEnabled: false });
+    allowClosingScreen.current = false;
+    navigation.addListener("beforeRemove", e => {
+      if (dead) return;
+      if (!allowClosingScreen.current) e.preventDefault();
+    });
+
     return () => {
       dead = true;
-      timeout && clearTimeout(timeout);
+      clearAnimationTimeout();
     };
-  }, [navigateToMainScreen, animDoneValue]);
+  }, [
+    clearAnimationTimeout,
+    navigation,
+    navigateToMainScreen,
+    animDoneValue,
+    animationTimeout,
+  ]);
+
+  useEffect(() => clearAnimationTimeout);
 
   const triggerEndAnimationWrapped = useCallback(() => {
     if (allDone) triggerEndAnimation();

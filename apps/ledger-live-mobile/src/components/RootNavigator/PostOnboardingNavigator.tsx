@@ -12,7 +12,7 @@ import PostOnboardingMockActionScreen from "../../screens/PostOnboarding/PostOnb
 
 const Stack = createStackNavigator<ParamList>();
 
-const Empty = () => null;
+const screenOptions = { headerShown: true, title: "", headerLeft: () => null };
 
 const PostOnboardingNavigator = () => {
   const { colors } = useTheme();
@@ -25,14 +25,13 @@ const PostOnboardingNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         ...stackNavigationConfig,
-        headerShown: true,
-        title: "",
-        headerLeft: Empty,
+        headerShown: false,
       }}
     >
       <Stack.Screen
         name={ScreenName.PostOnboardingHub as "PostOnboardingHub"}
         component={PostOnboardingHub}
+        options={screenOptions}
       />
       <Stack.Screen
         name={
@@ -45,6 +44,7 @@ const PostOnboardingNavigator = () => {
           ScreenName.PostOnboardingMockActionScreen as "PostOnboardingMockActionScreen"
         }
         component={PostOnboardingMockActionScreen}
+        options={screenOptions}
       />
     </Stack.Navigator>
   );
