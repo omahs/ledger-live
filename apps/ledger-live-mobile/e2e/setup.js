@@ -4,13 +4,15 @@ import * as bridge from "./bridge/server";
 beforeAll(async () => {
   bridge.init();
   setDemoMode();
+  jest.setTimeout(90000);
+  await detox.init(config);
   await device.launchApp({
     languageAndLocale: {
       language: "en-US",
       locale: "en-US",
     },
   });
-});
+}), 300000;
 
 afterAll(async () => {
   bridge.close();

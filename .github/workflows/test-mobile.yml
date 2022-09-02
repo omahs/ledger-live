@@ -137,7 +137,7 @@ jobs:
         with:
           api-level: 28
           arch: x86_64
-          target: google_apis
+          target: default
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
@@ -153,7 +153,7 @@ jobs:
         with:
           api-level: 28
           arch: x86_64
-          target: google_apis
+          target: default
           avd-name: Nexus_6
           emulator-options: -verbose -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           ram-size: 4096M
@@ -167,5 +167,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-android-artifacts
-          path: '/Users/runner/work/ledger-live/ledger-live/apps/ledger-live-mobile/android/app/build/outputs/apk/stagingRelease/app-x86_64-stagingRelease.apk'
+          path: 'artifacts'
           
