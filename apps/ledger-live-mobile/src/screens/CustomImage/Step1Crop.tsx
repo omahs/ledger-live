@@ -115,21 +115,6 @@ const Step1Cropping: React.FC<
     [containerDimensions],
   );
 
-  const sourceDimensions = useMemo(
-    () => containerDimensions,
-    [containerDimensions],
-  );
-
-  const sourceAspectRatio = sourceDimensions
-    ? sourceDimensions.height / (sourceDimensions.width || 1)
-    : null;
-
-  const imageCropperStyle = sourceAspectRatio
-    ? Math.max(sourceAspectRatio, 1 / (sourceAspectRatio || 1)) > 2
-      ? containerDimensions
-      : sourceDimensions
-    : null;
-
   return (
     <Flex flex={1}>
       <Flex
@@ -145,12 +130,12 @@ const Step1Cropping: React.FC<
           justifyContent="center"
           alignItems="center"
         >
-          {imageCropperStyle && imageToCrop ? (
+          {containerDimensions && imageToCrop ? (
             <ImageCropper
               ref={cropperRef}
               imageFileUri={imageToCrop.imageFileUri}
               aspectRatio={cropAspectRatio}
-              style={imageCropperStyle} // this component unfortunately needs absolute height & width values
+              style={containerDimensions} // this native component needs absolute height & width values
               onError={handleError}
               onResult={handleCropResult}
             />
