@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Flex, Icons, InfiniteLoader } from "@ledgerhq/native-ui";
 import { CropView } from "react-native-image-crop-tools";
 import { useTranslation } from "react-i18next";
@@ -17,7 +11,7 @@ import {
   ImageDimensions,
   ImageFileUri,
 } from "../../components/CustomImage/types";
-import { loadImageToFileWithDimensions } from "../../components/CustomImage/imageUtils";
+import { downloadImageToFile } from "../../components/CustomImage/imageUtils";
 import { cropAspectRatio } from "./shared";
 import Button from "../../components/Button";
 import { ScreenName } from "../../const";
@@ -35,9 +29,7 @@ const Step1Cropping: React.FC<
   StackScreenProps<ParamList, "CustomImageStep1Crop">
 > = ({ navigation, route }) => {
   const cropperRef = useRef<CropView>(null);
-  const [imageToCrop, setImageToCrop] = useState<
-    (ImageFileUri & Partial<ImageDimensions>) | null
-  >(null);
+  const [imageToCrop, setImageToCrop] = useState<ImageFileUri | null>(null);
   const [rotated, setRotated] = useState(false);
 
   const { t } = useTranslation();
@@ -61,11 +53,9 @@ const Step1Cropping: React.FC<
     if ("imageFileUri" in params) {
       setImageToCrop({
         imageFileUri: params.imageFileUri,
-        height: params.height,
-        width: params.width,
       });
     } else {
-      const { resultPromise, cancel } = loadImageToFileWithDimensions(params);
+      const { resultPromise, cancel } = downloadImageToFile(params);
       resultPromise
         .then(res => {
           if (!dead) setImageToCrop(res);

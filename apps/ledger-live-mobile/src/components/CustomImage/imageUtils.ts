@@ -15,49 +15,31 @@ import {
  * @returns (a promise) null if the user cancelled, otherwise an containing
  * the chosen image file URI as well as the image dimensions
  */
-export async function importImageFromPhoneGallery(): Promise<
-  (ImageFileUri & Partial<ImageDimensions>) | null
-> {
+export async function importImageFromPhoneGallery(): Promise<ImageFileUri | null> {
   try {
-    if (Platform.OS === "android") {
-      /**
-       * We have our own implementation for Android because expo-image-picker
-       * sometimes returns {cancelled: true} even when the user picks an image.
-       * More specifically, this happens if the user navigates to another app
-       * from the opened file picker app.
-       * */
-      const { uri, cancelled } =
-        await NativeModules.ImagePickerModule.pickImage();
-      if (cancelled) return null;
-      if (uri) {
-        const { width, height } = await loadImageSizeAsync(uri);
-        return {
-          imageFileUri: uri,
-          width,
-          height,
-        };
-      }
-      throw new Error("uri is falsy");
-    } else {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: false,
-        quality: 1,
-        base64: false,
-      });
-      if (result.cancelled) {
-        return null;
-      }
-      const { uri, width, height } = result;
-      if (uri) {
-        return {
-          width,
-          height,
-          imageFileUri: uri,
-        };
-      }
-      throw new Error("uri is falsy");
+    /**
+     * We have our own implementation for Android because expo-image-picker
+     * sometimes returns {cancelled: true} even when the user picks an image.
+     * More specifically, this happens if the user navigates to another app
+     * from the opened file picker app.
+     * */
+    const pickImagePromise =
+      Platform.OS === "android"
+        ? NativeModules.ImagePickerModule.pickImage()
+        : ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: false,
+            quality: 1,
+            base64: false,
+          });
+    const { uri, cancelled } = await pickImagePromise;
+    if (cancelled) return null;
+    if (uri) {
+      return {
+        imageFileUri: uri,
+      };
     }
+    throw new Error("uri is falsy");
   } catch (e) {
     console.error(e);
     throw new ImageLoadFromGalleryError();
@@ -69,7 +51,7 @@ type CancellablePromise<T> = {
   resultPromise: Promise<T>;
 };
 
-function downloadImageToFile({
+export function downloadImageToFile({
   imageUrl,
 }: ImageUrl): CancellablePromise<ImageFileUri> {
   const downloadTask = RNFetchBlob.config({ fileCache: true }).fetch(
@@ -87,7 +69,7 @@ function downloadImageToFile({
   };
 }
 
-export function loadImageToFileWithDimensions(
+export function downloadImageToFileWithDimensions(
   source: ImageUrl,
 ): CancellablePromise<ImageFileUri & Partial<ImageDimensions>> {
   const { imageUrl } = source;

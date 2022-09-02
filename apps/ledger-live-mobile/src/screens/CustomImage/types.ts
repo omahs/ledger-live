@@ -3,13 +3,9 @@ import {
   ProcessorPreviewResult,
   ProcessorRawResult,
 } from "../../components/CustomImage/ImageProcessor";
-import {
-  ImageDimensions,
-  ImageFileUri,
-  ImageUrl,
-} from "../../components/CustomImage/types";
+import { ImageFileUri, ImageUrl } from "../../components/CustomImage/types";
 
-type Step1CroppingParams = ImageUrl | (ImageFileUri & Partial<ImageDimensions>);
+type Step1CroppingParams = ImageUrl | ImageFileUri;
 
 type Step2PreviewParams = CropResult;
 
